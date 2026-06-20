@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Executive Townhome · Westminster, CO · Corporate Rental</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F7F4EF;
+      --white: #FFFFFF;
+      --charcoal: #1A1917;
+      --mid: #4A4844;
+      --light: #8A8784;
+      --gold: #9B7B3A;
+      --gold-light: #C9A55A;
+      --teal: #2E6B5E;
+      --teal-light: #EAF4F1;
+      --border: #E4E0D8;
+      --shadow: 0 4px 32px rgba(0,0,0,0.10);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(26,25,23,0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background 0.3s;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 500; letter-spacing: 0.12em;
+      color: var(--cream); text-transform: uppercase; text-decoration: none;
+    }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a {
+      color: rgba(247,244,239,0.75); font-size: 0.8rem; letter-spacing: 0.08em;
+      text-transform: uppercase; text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-cta {
+      background: var(--gold); color: var(--white) !important;
+      padding: 9px 22px; border-radius: 2px;
+      letter-spacing: 0.1em !important;
+    }
+    .nav-cta:hover { background: var(--gold-light) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; height: 100vh; min-height: 600px;
+      display: flex; align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://photos.zillowstatic.com/fp/acb4accb10d3491444ff1599c0c4f790-cc_ft_960.jpg');
+      background-size: cover; background-position: center 40%;
+      transform: scale(1.04);
+      transition: transform 8s ease;
+    }
+    .hero:hover .hero-bg { transform: scale(1.0); }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(20,18,14,0.85) 0%,
+        rgba(20,18,14,0.35) 55%,
+        rgba(20,18,14,0.1) 100%
+      );
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 64px 72px;
+      max-width: 860px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold); color: var(--white);
+      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 2px; margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+      font-weight: 300; line-height: 1.12;
+      color: var(--white); margin-bottom: 16px;
+    }
+    .hero-title em { font-style: italic; color: var(--gold-light); }
+    .hero-sub {
+      font-size: 1rem; color: rgba(247,244,239,0.8);
+      font-weight: 300; letter-spacing: 0.02em; margin-bottom: 36px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold); color: var(--white);
+      padding: 14px 32px; border-radius: 2px;
+      font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none; font-weight: 500;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-outline {
+      border: 1px solid rgba(247,244,239,0.5); color: var(--cream);
+      padding: 14px 32px; border-radius: 2px;
+      font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none; font-weight: 400;
+      transition: border-color 0.2s, background 0.2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--cream); background: rgba(247,244,239,0.08); }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--charcoal);
+      display: flex; justify-content: center; align-items: stretch;
+    }
+    .stat {
+      flex: 1; max-width: 220px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 24px 16px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem; font-weight: 400;
+      color: var(--gold-light); line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--light); margin-top: 5px;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 88px 48px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-tag {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); font-weight: 500; margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 400;
+      color: var(--charcoal); line-height: 1.2; margin-bottom: 20px;
+    }
+    .section-title em { font-style: italic; }
+    .section-body {
+      font-size: 1rem; color: var(--mid); font-weight: 300;
+      line-height: 1.8; max-width: 680px;
+    }
+
+    /* ── GALLERY ── */
+    .gallery-section { background: var(--white); padding: 88px 0 0; }
+    .gallery-header { padding: 0 48px; margin-bottom: 40px; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 320px 220px;
+      gap: 3px;
+    }
+    .gallery-item {
+      overflow: hidden; cursor: pointer; position: relative;
+      background: #e0dbd2;
+    }
+    .gallery-item:first-child {
+      grid-row: 1 / 3;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.5s ease;
+      display: block;
+    }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: rgba(20,18,14,0);
+      transition: background 0.3s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .gallery-item:hover .gallery-overlay { background: rgba(20,18,14,0.18); }
+    .vs-badge {
+      position: absolute; top: 12px; left: 12px;
+      background: rgba(46,107,94,0.92); color: #fff;
+      font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 2px;
+    }
+    .gallery-note {
+      padding: 16px 48px 32px;
+      font-size: 0.78rem; color: var(--light);
+      font-style: italic;
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: rgba(10,8,6,0.95);
+      align-items: center; justify-content: center;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox-img { max-width: 90vw; max-height: 88vh; object-fit: contain; }
+    .lightbox-close {
+      position: absolute; top: 24px; right: 32px;
+      color: var(--cream); font-size: 2rem; cursor: pointer;
+      background: none; border: none; line-height: 1;
+      opacity: 0.7; transition: opacity 0.2s;
+    }
+    .lightbox-close:hover { opacity: 1; }
+    .lightbox-prev, .lightbox-next {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.1); color: var(--cream);
+      border: none; width: 52px; height: 52px; border-radius: 50%;
+      font-size: 1.3rem; cursor: pointer; transition: background 0.2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .lightbox-prev { left: 24px; }
+    .lightbox-next { right: 24px; }
+    .lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,0.2); }
+
+    /* ── THE SPACE ── */
+    .space-section { background: var(--cream); }
+    .space-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .space-visual {
+      position: relative;
+    }
+    .space-img-main {
+      width: 100%; aspect-ratio: 4/3;
+      object-fit: cover; border-radius: 2px;
+      box-shadow: var(--shadow);
+    }
+    .space-img-accent {
+      position: absolute; bottom: -28px; right: -28px;
+      width: 48%; aspect-ratio: 1;
+      object-fit: cover; border-radius: 2px;
+      border: 4px solid var(--white);
+      box-shadow: var(--shadow);
+    }
+    .highlights {
+      margin-top: 32px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    }
+    .highlight-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.88rem; color: var(--mid);
+    }
+    .highlight-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0;
+    }
+
+    /* ── VIRTUAL STAGING ── */
+    .staging-section { background: var(--charcoal); padding: 88px 48px; }
+    .staging-section .section-tag { color: var(--gold-light); }
+    .staging-section .section-title { color: var(--white); }
+    .staging-section .section-body { color: rgba(247,244,239,0.65); }
+    .staging-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px; margin-top: 48px;
+    }
+    .staging-card { position: relative; overflow: hidden; border-radius: 2px; }
+    .staging-card img {
+      width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;
+      transition: transform 0.5s ease;
+    }
+    .staging-card:hover img { transform: scale(1.04); }
+    .staging-card-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 48px 20px 18px;
+      background: linear-gradient(to top, rgba(20,18,14,0.88) 0%, transparent 100%);
+      color: var(--white); font-size: 0.9rem; font-weight: 500;
+    }
+    .staging-card-label small {
+      display: block; font-size: 0.65rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--gold-light); margin-bottom: 4px;
+    }
+
+    /* ── AMENITIES ── */
+    .amenities-section { background: var(--white); }
+    .amenities-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); margin-top: 48px;
+    }
+    .amenity {
+      background: var(--white); padding: 32px 28px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .amenity-icon { font-size: 1.6rem; }
+    .amenity-name {
+      font-size: 0.9rem; font-weight: 500; color: var(--charcoal);
+    }
+    .amenity-desc {
+      font-size: 0.78rem; color: var(--light); line-height: 1.5;
+    }
+
+    /* ── LEASE TERMS ── */
+    .lease-section { background: var(--cream); }
+    .lease-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 2px; overflow: hidden;
+      display: grid; grid-template-columns: 1fr 1fr; margin-top: 48px;
+      box-shadow: var(--shadow);
+    }
+    .lease-main {
+      padding: 48px;
+    }
+    .lease-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.2rem; font-weight: 400; color: var(--charcoal); line-height: 1;
+    }
+    .lease-price span { font-size: 1rem; color: var(--light); }
+    .lease-promo {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--teal-light); color: var(--teal);
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em;
+      padding: 8px 14px; border-radius: 2px; margin: 16px 0 28px;
+    }
+    .lease-detail-list { list-style: none; }
+    .lease-detail-list li {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+      font-size: 0.88rem; color: var(--mid);
+    }
+    .lease-detail-list li:last-child { border-bottom: none; }
+    .lease-check { color: var(--teal); font-size: 1rem; }
+    .lease-sidebar {
+      background: var(--charcoal);
+      padding: 48px; display: flex; flex-direction: column;
+      justify-content: space-between;
+    }
+    .lease-sidebar-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 300; color: var(--white); margin-bottom: 20px;
+    }
+    .lease-sidebar-body {
+      font-size: 0.85rem; color: rgba(247,244,239,0.65);
+      line-height: 1.7; margin-bottom: 32px;
+    }
+    .lease-sidebar-actions { display: flex; flex-direction: column; gap: 10px; }
+    .btn-gold {
+      background: var(--gold); color: var(--white);
+      padding: 14px 24px; border-radius: 2px;
+      font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; text-align: center; font-weight: 500;
+      transition: background 0.2s;
+      display: block;
+    }
+    .btn-gold:hover { background: var(--gold-light); }
+    .btn-ghost {
+      border: 1px solid rgba(247,244,239,0.25); color: var(--cream);
+      padding: 14px 24px; border-radius: 2px;
+      font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; text-align: center; font-weight: 400;
+      transition: border-color 0.2s;
+      display: block;
+    }
+    .btn-ghost:hover { border-color: var(--cream); }
+
+    /* ── LOCATION ── */
+    .location-section { background: var(--white); }
+    .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; margin-top: 48px; align-items: start; }
+    .commute-list { list-style: none; }
+    .commute-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px 0; border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+    .commute-item:last-child { border-bottom: none; }
+    .commute-place { color: var(--charcoal); font-weight: 400; }
+    .commute-time {
+      color: var(--teal); font-weight: 500; font-size: 0.85rem;
+      background: var(--teal-light); padding: 3px 10px; border-radius: 20px;
+    }
+    .map-embed {
+      width: 100%; aspect-ratio: 4/3; border: 0; border-radius: 2px;
+      box-shadow: var(--shadow);
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      background: linear-gradient(135deg, #1A1917 60%, #2E2A22 100%);
+      padding: 100px 48px; text-align: center;
+    }
+    .contact-section .section-tag { color: var(--gold-light); }
+    .contact-section .section-title { color: var(--white); margin: 0 auto 16px; }
+    .contact-section .section-body { margin: 0 auto 48px; color: rgba(247,244,239,0.6); }
+    .contact-actions {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    }
+    .contact-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 2px; padding: 28px 36px;
+      text-align: center; text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      min-width: 180px;
+    }
+    .contact-card:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.25); }
+    .contact-card-icon { font-size: 1.5rem; }
+    .contact-card-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-light); }
+    .contact-card-value { font-size: 0.92rem; color: var(--white); font-weight: 400; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--charcoal); border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 24px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-copy { font-size: 0.75rem; color: rgba(247,244,239,0.35); }
+    .footer-fair { font-size: 0.72rem; color: rgba(247,244,239,0.25); letter-spacing: 0.04em; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { gap: 16px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      section, .staging-section, .contact-section { padding: 60px 24px; }
+      .hero-content { padding: 0 24px 56px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gallery-item:first-child { grid-row: auto; }
+      .gallery-header, .gallery-note { padding: 0 24px; }
+      .space-grid, .lease-card, .location-grid { grid-template-columns: 1fr; gap: 40px; }
+      .space-img-accent { display: none; }
+      .amenities-grid { grid-template-columns: repeat(2, 1fr); }
+      .staging-grid { grid-template-columns: 1fr 1fr; }
+      .stats-bar { flex-wrap: wrap; }
+      .stat { min-width: 45%; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
+    @media (max-width: 560px) {
+      .staging-grid { grid-template-columns: 1fr; }
+      .amenities-grid { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">11220 Osage Cir · Unit A</a>
+  <div class="nav-links">
+    <a href="#gallery">Gallery</a>
+    <a href="#amenities">Amenities</a>
+    <a href="#lease">Lease</a>
+    <a href="#location">Location</a>
+    <a href="#contact" class="nav-cta">Inquire Now</a>
+    <a href="https://www.zillow.com/homedetails/11220-Osage-Cir-UNIT-A-Westminster-CO-80234/90146612_zpid/?utm_campaign=zillowwebmessage&utm_medium=referral&utm_source=txtshare" target="_blank" class="nav-cta" style="background:#2E6B5E; margin-left:4px;">Apply on Zillow ↗</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Available July 1, 2026 · Westminster, CO</div>
+    <h1 class="hero-title">
+      Executive Townhome<br>
+      <em>with Scenic Views</em>
+    </h1>
+    <p class="hero-sub">
+      3 Bedrooms + Office · 2.5 Bathrooms · 2,050 SF · Utilities Included · Furnished on Request
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Schedule a Tour</a>
+      <a href="#gallery" class="btn-outline">View Gallery</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-value">3 + Office</div>
+    <div class="stat-label">Bedrooms</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">2.5</div>
+    <div class="stat-label">Bathrooms</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">2,050</div>
+    <div class="stat-label">Square Feet</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">$3,200</div>
+    <div class="stat-label">Per Month · All Utilities</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">9 mi</div>
+    <div class="stat-label">To Downtown Denver</div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
+  <div class="gallery-header">
+    <div class="section-tag">Property Gallery</div>
+    <h2 class="section-title">Every Space, <em>Beautifully Considered</em></h2>
+  </div>
+
+  <!-- LIVING AREAS -->
+  <div class="gallery-group-label">Living Areas</div>
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openLightbox(0)">
+      <img src="photos/living_kitchen.jpg" alt="Open Living Room &amp; Kitchen" loading="eager" />
+      <div class="gallery-overlay"></div>
+      <div class="gallery-room-tag">Living Room / Kitchen</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(1)">
+      <img src="photos/kitchen.jpg" alt="Kitchen – Granite Island" loading="lazy" />
+      <div class="gallery-overlay"></div>
+      <div class="gallery-room-tag">Kitchen</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(2)">
+      <img src="photos/dining.jpg" alt="Dining Area" loading="lazy" />
+      <div class="gallery-overlay"></div>
+      <div class="gallery-room-tag">Dining Area</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(3)">
+      <img src="photos/office.jpg" alt="Home Office – French Glass Doors" loading="lazy" />
+      <div class="gallery-overlay"></div>
+      <div class="gallery-room-tag">Home Office</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(4)">
+      <img src="photos/balcony_view.jpg" alt="Private Balcony – Colorado Views" loading="lazy" />
+      <div class="gallery-overlay"></div>
+      <div class="gallery-room-tag">Private Balcony</div>
+    </div>
+  </div>
+
+  <!-- BEDROOMS -->
+  <div class="gallery-group-label">Bedrooms</div>
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openLightbox(5)">
+      <img src="photos/primary_bedroom.jpg" alt="Primary Bedroom – French Doors to Balcony" loading="lazy" />
+      <div class="gallery-overlay"></div>
+      <div class="gallery-room-tag">Primary Bedroom</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(6)">
+      <img src="photos/bedroom_2.jpg" alt="Bedroom 2" loading="lazy" />
+      <div class="gallery-overlay"></div>
+      <div class="gallery-room-tag">Bedroom 2</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(7)">
+      <img src="photos/bedroom_3.jpg" alt="Bedroom 3" loading="lazy" />
+      <div class="gallery-overlay"></div>
+      <div class="gallery-room-tag">Bedroom 3</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(8)">
+      <img src="photos/walkin_closet.jpg" alt="Primary Walk-In Closet" loading="lazy" />
+      <div class="gallery-overlay"></div>
+      <div class="gallery-room-tag">Primary Walk-In Closet</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(9)">
+      <img src="photos/hallway_upstairs.jpg" alt="Upper Hallway" loading="lazy" />
+      <div class="gallery-overlay"></div>
+      <div class="gallery-room-tag">Upper Hallway</div>
+    </div>
+  </div>
+
+  <!-- BATHROOMS & DETAILS -->
+  <div class="gallery-group-label">Bathrooms &amp; Details</div>
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openLightbox(10)">
+      <img src="photos/primary_bath.jpg" alt="Primary Bath – Soaking Tub &amp; Chandelier" loading="lazy" />
+      <div class="gallery-overlay"></div>
+      <div class="gallery-room-tag">Primary Bath – Soaking Tub</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(11)">
+      <img src="photos/bathroom.jpg" alt="Guest Bathroom" loading="lazy" />
+      <div class="gallery-overlay"></div>
+      <div class="gallery-room-tag">Guest Bathroom</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(12)">
+      <img src="photos/staircase_niches.jpg" alt="Staircase Landing – Arched Niches" loading="lazy" />
+      <div class="gallery-overlay"></div>
+      <div class="gallery-room-tag">Staircase Landing</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(13)">
+      <img src="photos/entry_hallway.jpg" alt="Entry Hallway &amp; Powder Bath" loading="lazy" />
+      <div class="gallery-overlay"></div>
+      <div class="gallery-room-tag">Entry &amp; Powder Bath</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(14)">
+      <img src="photos/garage.jpg" alt="2-Car Garage with EV Charging" loading="lazy" />
+      <div class="gallery-overlay"></div>
+      <div class="gallery-room-tag">2-Car Garage · EV Charging</div>
+    </div>
+  </div>
+
+  <p class="gallery-note">All photos are of the actual property. Click any photo to enlarge.</p>
+</section>
+
+<!-- THE SPACE -->
+<section class="space-section">
+  <div class="container">
+    <div class="space-grid">
+      <div class="space-visual">
+        <img
+          class="space-img-main"
+          src="photos/kitchen.jpg"
+          alt="Chef's Kitchen – Granite Island &amp; Cherry Cabinets"
+        />
+        <img
+          class="space-img-accent"
+          src="photos/hallway_upstairs.jpg"
+          alt="Upper Hallway with French Glass Office Doors"
+        />
+      </div>
+      <div>
+        <div class="section-tag">The Property</div>
+        <h2 class="section-title">End-Unit Living at <em>Its Finest</em></h2>
+        <p class="section-body">
+          A rare end-unit position floods this two-story townhome with natural light from three exposures. Soaring ceilings, wide-plank waterproof laminate, granite countertops, and cherry cabinetry speak to quality throughout.
+          <br><br>
+          Two private balconies frame panoramic Colorado views — the perfect setting to decompress after a long workday. The primary suite features a freestanding soaking tub and walk-in shower. A dedicated office with French glass doors handles remote work with ease.
+        </p>
+        <div class="highlights">
+          <div class="highlight-item"><div class="highlight-dot"></div>Electric fireplace</div>
+          <div class="highlight-item"><div class="highlight-dot"></div>Two large balconies</div>
+          <div class="highlight-item"><div class="highlight-dot"></div>Granite countertops</div>
+          <div class="highlight-item"><div class="highlight-dot"></div>Cherry cabinetry</div>
+          <div class="highlight-item"><div class="highlight-dot"></div>Soaking tub + shower</div>
+          <div class="highlight-item"><div class="highlight-dot"></div>Office w/ French glass doors</div>
+          <div class="highlight-item"><div class="highlight-dot"></div>In-unit washer &amp; dryer</div>
+          <div class="highlight-item"><div class="highlight-dot"></div>3 beds + office / 2.5 baths</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- AMENITIES -->
+<section class="amenities-section" id="amenities">
+  <div class="container">
+    <div class="section-tag">Amenities & Features</div>
+    <h2 class="section-title">Everything You <em>Need</em></h2>
+    <div class="amenities-grid">
+      <div class="amenity">
+        <div class="amenity-icon">⚡</div>
+        <div class="amenity-name">EV Charging</div>
+        <div class="amenity-desc">220V Level 2 outlet in your private attached 2-car garage</div>
+      </div>
+      <div class="amenity">
+        <div class="amenity-icon">💧</div>
+        <div class="amenity-name">All Utilities Included</div>
+        <div class="amenity-desc">Electric, gas, water, and trash — one flat monthly rate</div>
+      </div>
+      <div class="amenity">
+        <div class="amenity-icon">🏊</div>
+        <div class="amenity-name">Pool & Spa</div>
+        <div class="amenity-desc">Community pool, hot tub, tennis, and basketball courts</div>
+      </div>
+      <div class="amenity">
+        <div class="amenity-icon">🔐</div>
+        <div class="amenity-name">Smart Home</div>
+        <div class="amenity-desc">Keyless entry system and Ring video doorbell</div>
+      </div>
+      <div class="amenity">
+        <div class="amenity-icon">🛋️</div>
+        <div class="amenity-name">Furnished on Request</div>
+        <div class="amenity-desc">Modern furniture package available — ideal for corporate stays</div>
+      </div>
+      <div class="amenity">
+        <div class="amenity-icon">🏠</div>
+        <div class="amenity-name">In-Unit Laundry</div>
+        <div class="amenity-desc">Full-size washer and dryer included in the unit</div>
+      </div>
+      <div class="amenity">
+        <div class="amenity-icon">❄️</div>
+        <div class="amenity-name">Central AC & Heat</div>
+        <div class="amenity-desc">Forced air heating and central air conditioning</div>
+      </div>
+      <div class="amenity">
+        <div class="amenity-icon">🐕</div>
+        <div class="amenity-name">Pet Friendly</div>
+        <div class="amenity-desc">Dogs welcome — perfect for relocating professionals</div>
+      </div>
+      <div class="amenity">
+        <div class="amenity-icon">🔥</div>
+        <div class="amenity-name">Electric Fireplace</div>
+        <div class="amenity-desc">Elegant electric fireplace in the main living area</div>
+      </div>
+      <div class="amenity">
+        <div class="amenity-icon">🍽️</div>
+        <div class="amenity-name">Full Kitchen</div>
+        <div class="amenity-desc">Granite counters, cherry cabs, stove, fridge, microwave, dishwasher</div>
+      </div>
+      <div class="amenity">
+        <div class="amenity-icon">🪟</div>
+        <div class="amenity-name">Two Balconies</div>
+        <div class="amenity-desc">Panoramic Colorado views from two private outdoor spaces</div>
+      </div>
+      <div class="amenity">
+        <div class="amenity-icon">🚗</div>
+        <div class="amenity-name">2-Car Garage</div>
+        <div class="amenity-desc">Attached, finished with storage shelving — secure and convenient</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY AMENITIES PHOTOS -->
+<section style="background:#1A1917; padding:88px 48px;">
+  <div class="container">
+    <div class="section-tag" style="color:var(--gold-light);">Community Amenities</div>
+    <h2 class="section-title" style="color:var(--white);">Courts, Pergola &amp; <em>Green Space</em></h2>
+    <p class="section-body" style="color:rgba(247,244,239,0.6); margin-bottom:48px;">
+      HOA amenities include tennis courts, basketball court, a shaded pergola with picnic area, pool, and spa — all within steps of the front door.
+    </p>
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:4px; border-radius:2px; overflow:hidden;">
+      <div style="position:relative; overflow:hidden;">
+        <img
+          src="photos/community_courts.jpg"
+          alt="Tennis &amp; Basketball Courts"
+          style="width:100%; aspect-ratio:4/3; object-fit:cover; display:block; transition:transform 0.5s;"
+          onmouseover="this.style.transform='scale(1.04)'"
+          onmouseout="this.style.transform='scale(1)'"
+        />
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:40px 20px 18px;background:linear-gradient(to top,rgba(20,18,14,0.85),transparent);color:#fff;">
+          <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-light);margin-bottom:4px;">Community</div>
+          Tennis &amp; Basketball Courts
+        </div>
+      </div>
+      <div style="position:relative; overflow:hidden;">
+        <img
+          src="photos/community_pergola.jpg"
+          alt="Shaded Pergola &amp; Picnic Area"
+          style="width:100%; aspect-ratio:4/3; object-fit:cover; display:block; transition:transform 0.5s;"
+          onmouseover="this.style.transform='scale(1.04)'"
+          onmouseout="this.style.transform='scale(1)'"
+        />
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:40px 20px 18px;background:linear-gradient(to top,rgba(20,18,14,0.85),transparent);color:#fff;">
+          <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-light);margin-bottom:4px;">Community</div>
+          Shaded Pergola &amp; Picnic Area
+        </div>
+      </div>
+      <div style="position:relative; overflow:hidden;">
+        <img
+          src="photos/community_tennis.jpg"
+          alt="Tennis Courts"
+          style="width:100%; aspect-ratio:4/3; object-fit:cover; display:block; transition:transform 0.5s;"
+          onmouseover="this.style.transform='scale(1.04)'"
+          onmouseout="this.style.transform='scale(1)'"
+        />
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:40px 20px 18px;background:linear-gradient(to top,rgba(20,18,14,0.85),transparent);color:#fff;">
+          <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-light);margin-bottom:4px;">Community</div>
+          Tennis Courts
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEASE TERMS -->
+<section class="lease-section" id="lease">
+  <div class="container">
+    <div class="section-tag">Lease Terms</div>
+    <h2 class="section-title">Flexible, <em>Transparent</em> Pricing</h2>
+    <div class="lease-card">
+      <div class="lease-main">
+        <div class="lease-price">$3,200 <span>/ month</span></div>
+        <div class="lease-promo">
+          🎉 Special Offer: 10% off July rent — expires July 31
+        </div>
+        <ul class="lease-detail-list">
+          <li><span class="lease-check">✓</span> Available July 1, 2026</li>
+          <li><span class="lease-check">✓</span> 3-month or month-to-month lease</li>
+          <li><span class="lease-check">✓</span> All utilities included (electric, gas, water, trash)</li>
+          <li><span class="lease-check">✓</span> Furniture package available on request</li>
+          <li><span class="lease-check">✓</span> 3 bedrooms + dedicated office</li>
+          <li><span class="lease-check">✓</span> 2.5 bathrooms (primary full, guest full, powder)</li>
+          <li><span class="lease-check">✓</span> Dogs welcome</li>
+          <li><span class="lease-check">✓</span> No smoking</li>
+          <li><span class="lease-check">✓</span> Easy Zillow application ($35 / 30 days)</li>
+        </ul>
+      </div>
+      <div class="lease-sidebar">
+        <div>
+          <div class="lease-sidebar-title">Ready to Make This Your Home Base?</div>
+          <p class="lease-sidebar-body">
+            Ideal for corporate relocations, project assignments, travel professionals, or anyone needing a high-quality temporary home near Denver. Respond time is fast — tours available within 24 hours.
+          </p>
+        </div>
+        <div class="lease-sidebar-actions">
+          <a href="https://www.zillow.com/homedetails/11220-Osage-Cir-UNIT-A-Westminster-CO-80234/90146612_zpid/?utm_campaign=zillowwebmessage&utm_medium=referral&utm_source=txtshare" target="_blank" class="btn-gold">Apply on Zillow</a>
+          <a href="#contact" class="btn-ghost">Contact Directly</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location-section" id="location">
+  <div class="container">
+    <div class="section-tag">Location</div>
+    <h2 class="section-title">Perfectly Positioned <em>Near Denver</em></h2>
+    <div class="location-grid">
+      <div>
+        <p class="section-body" style="margin-bottom:32px;">
+          Situated in the 80234 zip code on the Westminster/Northglenn border — 9 miles north of downtown Denver with quick access to I-25, US-36, and the light rail. Tech corridors, DIA, and Boulder are all within easy reach.
+        </p>
+        <ul class="commute-list">
+          <li class="commute-item">
+            <span class="commute-place">Downtown Denver</span>
+            <span class="commute-time">~20 min drive</span>
+          </li>
+          <li class="commute-item">
+            <span class="commute-place">Denver International Airport</span>
+            <span class="commute-time">~30 min drive</span>
+          </li>
+          <li class="commute-item">
+            <span class="commute-place">Boulder</span>
+            <span class="commute-time">~30 min drive</span>
+          </li>
+          <li class="commute-item">
+            <span class="commute-place">Interlocken Tech Corridor</span>
+            <span class="commute-time">~15 min drive</span>
+          </li>
+          <li class="commute-item">
+            <span class="commute-place">Westminster Station (Light Rail)</span>
+            <span class="commute-time">~8 min drive</span>
+          </li>
+          <li class="commute-item">
+            <span class="commute-place">Whole Foods / Costco</span>
+            <span class="commute-time">~5 min drive</span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <iframe
+          class="map-embed"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3058.6!2d-105.0036!3d39.9003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876b88!2s11220+Osage+Cir%2C+Westminster%2C+CO+80234!5e0!3m2!1sen!2sus!4v1718900000000"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Property Location Map">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="section-tag">Get In Touch</div>
+    <h2 class="section-title" style="max-width:560px;">Your Next Chapter<br><em>Starts Here</em></h2>
+    <p class="section-body">
+      Tours available within 24 hours. Inquire today — this property is available July 1 and won't last long.
+    </p>
+    <div class="contact-actions">
+      <a href="tel:+17209885159" class="contact-card">
+        <div class="contact-card-icon">📞</div>
+        <div class="contact-card-label">Call or Text</div>
+        <div class="contact-card-value">720-988-5159</div>
+      </a>
+      <a href="mailto:mcsbtat@gmail.com" class="contact-card">
+        <div class="contact-card-icon">✉️</div>
+        <div class="contact-card-label">Email</div>
+        <div class="contact-card-value">mcsbtat@gmail.com</div>
+      </a>
+      <a href="https://www.zillow.com/homedetails/11220-Osage-Cir-UNIT-A-Westminster-CO-80234/90146612_zpid/?utm_campaign=zillowwebmessage&utm_medium=referral&utm_source=txtshare" target="_blank" class="contact-card">
+        <div class="contact-card-icon">🏡</div>
+        <div class="contact-card-label">Zillow Listing</div>
+        <div class="contact-card-value">View &amp; Apply</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">© 2026 · 11220 Osage Cir Unit A · Westminster, CO 80234</div>
+  <div class="footer-fair">Equal Housing Opportunity · Interior renderings are virtually staged for illustrative purposes</div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-prev" onclick="changeLightbox(-1, event)">&#8249;</button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="" />
+  <button class="lightbox-next" onclick="changeLightbox(1, event)">&#8250;</button>
+</div>
+
+<script>
+  const photos = [
+    { src: 'photos/living_kitchen.jpg', alt: 'Living Room / Kitchen' },
+    { src: 'photos/kitchen.jpg', alt: "Kitchen – Granite Island" },
+    { src: 'photos/dining.jpg', alt: 'Dining Area' },
+    { src: 'photos/office.jpg', alt: 'Home Office – French Glass Doors' },
+    { src: 'photos/balcony_view.jpg', alt: 'Private Balcony – Colorado Views' },
+    { src: 'photos/primary_bedroom.jpg', alt: 'Primary Bedroom' },
+    { src: 'photos/bedroom_2.jpg', alt: 'Bedroom 2' },
+    { src: 'photos/bedroom_3.jpg', alt: 'Bedroom 3' },
+    { src: 'photos/walkin_closet.jpg', alt: 'Primary Walk-In Closet' },
+    { src: 'photos/hallway_upstairs.jpg', alt: 'Upper Hallway' },
+    { src: 'photos/primary_bath.jpg', alt: 'Primary Bath – Soaking Tub & Chandelier' },
+    { src: 'photos/bathroom.jpg', alt: 'Guest Bathroom' },
+    { src: 'photos/staircase_niches.jpg', alt: 'Staircase Landing' },
+    { src: 'photos/entry_hallway.jpg', alt: 'Entry & Powder Bath' },
+    { src: 'photos/garage.jpg', alt: '2-Car Garage · EV Charging' },
+  ];
+  let currentIdx = 0;
+
+  function openLightbox(idx) {
+    currentIdx = idx;
+    document.getElementById('lightboxImg').src = photos[idx].src;
+    document.getElementById('lightboxImg').alt = photos[idx].alt;
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(e) {
+    if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lightbox-close')) {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  function changeLightbox(dir, e) {
+    if (e) e.stopPropagation();
+    currentIdx = (currentIdx + dir + photos.length) % photos.length;
+    document.getElementById('lightboxImg').src = photos[currentIdx].src;
+    document.getElementById('lightboxImg').alt = photos[currentIdx].alt;
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (!document.getElementById('lightbox').classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') changeLightbox(-1);
+    if (e.key === 'ArrowRight') changeLightbox(1);
+  });
+
+  // Smooth nav hide/show on scroll
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    const scroll = window.scrollY;
+    if (scroll > 80) {
+      nav.style.background = 'rgba(26,25,23,0.97)';
+    } else {
+      nav.style.background = 'rgba(26,25,23,0.88)';
+    }
+    lastScroll = scroll;
+  });
+</script>
+
+</body>
+</html>
